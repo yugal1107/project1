@@ -9,6 +9,9 @@ let id = 1;
 
 app.use(express.json());
 
+app.get("/" , (req,res)=>{
+    res.send("Server is running successfully....")
+})
 
 app.post('/api/location', (req, res) => {
     const { latitude, longitude, name } = req.body;
