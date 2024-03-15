@@ -2,12 +2,15 @@ import express from "express"
 import bodyParser from "body-parser"
 import axios from "axios";
 import { log } from "console";
+import cors from "cors";
 
 const app = express();
 const port = 3000;
 let id = 1;
 
 app.use(express.json());
+
+app.use(cors())
 
 app.get("/" , (req,res)=>{
     res.send("Server is running successfully....")
