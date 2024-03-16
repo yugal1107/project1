@@ -10,8 +10,6 @@ let id = 1;
 
 app.use(express.json());
 
-app.use(cors())
-
 app.get("/" , (req,res)=>{
     res.send("Server is running successfully....")
 })

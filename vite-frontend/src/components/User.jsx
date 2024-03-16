@@ -18,6 +18,7 @@ function User(){
 
     const startlocation = ()=>{
         // let sharinglocation = setInterval(getLocation,3000)
+        getLocation();
         updateinterval(setInterval(getLocation,10000))
     }
 

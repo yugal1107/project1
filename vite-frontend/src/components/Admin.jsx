@@ -13,25 +13,24 @@ function Admin(){
     const [qname , setQname ] = useState("")
     const [ loading , setLoading ] = useState(true)
     const [notFound , setNotfound ] = useState(false)
+    const [longPolling , setPolling ] = useState(null)
 
     const mapRef = useRef(null);
 
-
-
-    useEffect(()=>{
-        const fetchData = async ()=>{
-            try{
-                setLoading(true)
-                const loc_data = await axios.get("/api/locations")
-                console.log("Fetched Location : " , loc_data.data)
-                setLocations(loc_data.data)
-                setLoading(false)
-            } catch(error){
-                console.error("Error fetching data : " , error)
-            }
+    const fetchData = async ()=>{
+        try{
+            const loc_data = await axios.get("/api/locations")
+            console.log("Fetched Location : " , loc_data.data)
+            setLocations(loc_data.data)
+            setLoading(false)
+        } catch(error){
+            console.error("Error fetching data : " , error)
         }
+    }
+    useEffect(()=>{
         fetchData(); 
-    },[locations])
+        setPolling(setInterval(fetchData,5000))
+    },[])
 
 
     function createMarker(location){
